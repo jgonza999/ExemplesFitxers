@@ -4,4 +4,13 @@
   <artifactId>AccesFitxers</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>AccesFitxers</name>
+  
+   
+  
+  <properties>
+	<maven.compiler.release>21</maven.compiler.release>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  
 </project>
