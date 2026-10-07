@@ -11,7 +11,7 @@ public class EscriureLlegirObjectes {
 
 	public static void main(String[] args)  {
 
-		//Escrivim varis objectes al fitxer
+		//Escrivim varis objectes al fitxer amb la mateixa instància d'ObjectOutputStream
 		try (ObjectOutputStream oos =
 				new ObjectOutputStream(new FileOutputStream("fitxers/persones.dat",true))) {
 

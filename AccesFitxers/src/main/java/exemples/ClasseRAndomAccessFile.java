@@ -1,6 +1,7 @@
 package exemples;
 
 	import java.io.*;
+import java.util.Iterator;
 
 	public class ClasseRAndomAccessFile {
 	    public static void main(String[] args) {
