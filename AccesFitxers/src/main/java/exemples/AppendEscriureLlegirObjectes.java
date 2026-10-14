@@ -1,0 +1,45 @@
+package exemples;
+
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class AppendEscriureLlegirObjectes {
+
+	public static void main(String[] args)  {
+File fitxer=new File("fitxers/persones.dat");
+		//Escrivim varis objectes al fitxer amb la mateixa instància d'ObjectOutputStream
+		try (ObjectOutputStream oos = fitxer.exists()
+		        ? new AppendableObjectOutputStream(
+		                new FileOutputStream(fitxer, true))
+		        : new ObjectOutputStream(
+		                new FileOutputStream(fitxer))) {
+			oos.writeObject(new Persona("Maria", 20));
+			oos.writeObject(new Persona("Joan", 21));
+		}catch (IOException e) {
+			e.printStackTrace();
+		}	
+		
+		//Llegim els objectes del fitxer
+				try (ObjectInputStream ois =
+						new ObjectInputStream(new FileInputStream("fitxers/persones.dat"))) {		
+
+					try {
+						while (true) {
+							Persona p = (Persona) ois.readObject();
+							System.out.println(p);
+						}
+					} catch (EOFException e) {
+						// Final del fitxer
+					}
+
+				} catch (ClassNotFoundException|IOException e) {
+					e.printStackTrace();
+				} 		
+	}
+
+}

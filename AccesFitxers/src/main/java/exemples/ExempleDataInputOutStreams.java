@@ -1,5 +1,6 @@
 package exemples;
 
+import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -9,10 +10,11 @@ import java.io.IOException;
 public class ExempleDataInputOutStreams {
 
 	public static void main(String[] args) {
-		// Escriure dades a un fitxer, passant-li al constructor el flux FileOutputStream
+		// Escriure dades a un fitxer, passant-li al constructor el buffer BufferedOutputStream
+		//i el flux FileOutputStream
 
 		try ( DataOutputStream dos = 
-				new DataOutputStream(new FileOutputStream("fitxers/dades.bin",true))) {
+				new DataOutputStream( new BufferedOutputStream(new FileOutputStream("fitxers/dades.bin",true)))) {
 
 			dos.writeInt(42);
 			dos.writeDouble(3.1416);
@@ -29,6 +31,7 @@ public class ExempleDataInputOutStreams {
 		String s=null;
 		int reg=0;
 
+		//també es pot utilitzar amb el buffer BufferInputStream
 		try ( DataInputStream dis = new DataInputStream(new FileInputStream("fitxers/dades.bin"))) {
 			while(dis.available()>0) {
 				x = dis.readInt();
